@@ -31,6 +31,7 @@ namespace BlackJack2CS
 
         public string Suit { get; set; }
         public string Face { get; set; }
+
         public int Value()
         {
             switch (Face)
@@ -125,11 +126,12 @@ namespace BlackJack2CS
                         {
                             Console.WriteLine($"You have the {cardInPlayerHand.Face} of {cardInPlayerHand.Suit}");
                         }
+                        Console.WriteLine("-------------------------");
 
                         var thePlayerTotalValue = playerHand.TotalValue();
                         Console.WriteLine($"Your hand is worth {thePlayerTotalValue}");
 
-                        Console.WriteLine("What do you want? HIT or STAND");
+                        Console.WriteLine("YOUR CHOICE? HIT or STAND");
                         hitOrStand = Console.ReadLine().ToUpper().Trim();
                         if (hitOrStand == "HIT")
                         {
@@ -145,11 +147,12 @@ namespace BlackJack2CS
                     {
 
                         Console.WriteLine($"Your hand is worth {playerHand.TotalValue()}");
-                        Console.WriteLine();
+                        Console.WriteLine("-------------------------");
                         Console.WriteLine("You have busted");
+                        Console.WriteLine("----------------------");
                     }
-
-                    while (dealerHand.TotalValue() < 17)
+                    // 
+                    while (dealerHand.TotalValue() < 17 && playerHand.TotalValue() < 21)
                     {
                         var cardDealtToDealer = deck[0];
                         deck.Remove(cardDealtToDealer);
@@ -164,6 +167,7 @@ namespace BlackJack2CS
 
 
                     Console.WriteLine($"The dealer has {dealerHand.TotalValue()}");
+                    Console.WriteLine("---------------------");
 
                     if (playerHand.TotalValue() > 21)
                     {
@@ -183,8 +187,11 @@ namespace BlackJack2CS
                     {
                         Console.WriteLine("PLAYER WINS");
                     }
+                    // 
+                    Console.WriteLine("-----------------------");
                     Console.Write("Would you like to play again? ");
                     userChoice = Console.ReadLine().ToUpper().Trim();
+
                 }
 
             }
